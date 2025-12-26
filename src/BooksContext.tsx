@@ -18,15 +18,16 @@ const BooksContext = createContext<BooksContextValue | undefined>(
   undefined
 );
 
-// some demo data
+// Demo data now includes shelfLocation
 const initialBooks: Book[] = [
   {
     id: "1",
     title: "Introduction to Algorithms",
     author: "Thomas H. Cormen",
     publicationYear: 2009,
-    genre: "Computer Science",
+    genre: "Cyber Security",
     copiesAvailable: 1,
+    shelfLocation: "A-3",
   },
   {
     id: "2",
@@ -34,7 +35,8 @@ const initialBooks: Book[] = [
     author: "Andrew Hunt",
     publicationYear: 1999,
     genre: "Software Development",
-    copiesAvailable: 3,
+    copiesAvailable: 10,
+    shelfLocation: "-",
   },
 ];
 
@@ -43,7 +45,7 @@ export const BooksProvider = ({ children }: { children: ReactNode }) => {
 
   const addBook = (data: Omit<Book, "id">) => {
     const newBook: Book = {
-      id: crypto.randomUUID(), // or Date.now().toString()
+      id: crypto.randomUUID(),
       ...data,
     };
     setBooks((prev) => [...prev, newBook]);
@@ -72,8 +74,6 @@ export const BooksProvider = ({ children }: { children: ReactNode }) => {
 
 export const useBooks = () => {
   const ctx = useContext(BooksContext);
-  if (!ctx) {
-    throw new Error("useBooks must be used inside BooksProvider");
-  }
+  if (!ctx) throw new Error("useBooks must be used inside BooksProvider");
   return ctx;
 };

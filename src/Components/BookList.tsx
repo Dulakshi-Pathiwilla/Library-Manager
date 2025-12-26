@@ -20,12 +20,13 @@ const BookList = () => {
         <table className="table">
           <thead>
             <tr>
-              <th style={{ width: "30%" }}>Title</th>
-              <th style={{ width: "25%" }}>Author</th>
+              <th style={{ width: "28%" }}>Title</th>
+              <th style={{ width: "22%" }}>Author</th>
               <th style={{ width: "10%" }}>Year</th>
-              <th style={{ width: "20%" }}>Genre</th>
-              <th style={{ width: "15%" }}>Copies</th>
-              <th style={{ width: "15%" }}>Actions</th>
+              <th style={{ width: "18%" }}>Genre</th>
+              <th style={{ width: "10%" }}>Copies</th>
+              <th style={{ width: "12%" }}>Shelf</th>   {/* NEW */}
+              <th style={{ width: "10%" }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -36,6 +37,7 @@ const BookList = () => {
                 <td>{b.publicationYear}</td>
                 <td>{b.genre}</td>
                 <td>{b.copiesAvailable}</td>
+                <td>{b.shelfLocation || "-"}</td>        {/* NEW */}
                 <td>
                   <button
                     className="btn-small"

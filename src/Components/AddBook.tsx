@@ -8,6 +8,7 @@ const emptyValues: BookFormValues = {
   publicationYear: "",
   genre: "",
   copiesAvailable: "",
+  shelfLocation: "",          
 };
 
 const AddBook = () => {
@@ -21,6 +22,7 @@ const AddBook = () => {
       publicationYear: Number(values.publicationYear),
       genre: values.genre,
       copiesAvailable: Number(values.copiesAvailable),
+      shelfLocation: values.shelfLocation.trim(),  // NEW
     });
     navigate("/books");
   };

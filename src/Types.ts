@@ -5,4 +5,5 @@ export interface Book {
   publicationYear: number;
   genre: string;
   copiesAvailable: number;
+  shelfLocation: string;
 }

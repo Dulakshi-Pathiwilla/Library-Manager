@@ -18,6 +18,7 @@ const EditBook = () => {
     publicationYear: String(book.publicationYear),
     genre: book.genre,
     copiesAvailable: String(book.copiesAvailable),
+    shelfLocation: book.shelfLocation ?? "",   
   };
 
   const handleSubmit = (values: BookFormValues) => {
@@ -27,6 +28,7 @@ const EditBook = () => {
       publicationYear: Number(values.publicationYear),
       genre: values.genre,
       copiesAvailable: Number(values.copiesAvailable),
+      shelfLocation: values.shelfLocation.trim(), // NEW
     });
     navigate("/books");
   };

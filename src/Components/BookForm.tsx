@@ -3,9 +3,10 @@ import { useState, type FormEvent } from "react";
 export interface BookFormValues {
   title: string;
   author: string;
-  publicationYear: string;   // as text for the input
+  publicationYear: string;
   genre: string;
-  copiesAvailable: string;   // as text for the input
+  copiesAvailable: string;
+  shelfLocation: string;        
 }
 
 interface BookFormProps {
@@ -95,6 +96,17 @@ const BookForm = ({
           value={values.copiesAvailable}
           onChange={handleChange}
           required
+        />
+      </label>
+
+      {/* NEW FIELD */}
+      <label>
+        Shelf Location
+        <input
+          name="shelfLocation"
+          value={values.shelfLocation}
+          onChange={handleChange}
+          placeholder="e.g. A-3"
         />
       </label>
 
