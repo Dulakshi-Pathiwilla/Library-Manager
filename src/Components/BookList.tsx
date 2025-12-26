@@ -1,44 +1,14 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { Book } from "../Types";
-import { getBooks, deleteBook } from "../Api/BooksApi";
+import { useBooks } from "../BooksContext";
 
 const BookList = () => {
-  const [books, setBooks] = useState<Book[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { books, deleteBook } = useBooks();
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const data = await getBooks();
-        setBooks(data);
-      } catch (err) {
-        setError("Failed to load books");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
-  }, []);
-
-  const handleDelete = async (id: string) => {
-    const confirmed = window.confirm("Delete this book?");
-    if (!confirmed) return;
-
-    try {
-      await deleteBook(id);
-      setBooks((prev) => prev.filter((b) => b.id !== id));
-    } catch (err) {
-      alert("Failed to delete book");
-      console.error(err);
-    }
+  const handleDelete = (id: string) => {
+    if (!window.confirm("Delete this book?")) return;
+    deleteBook(id);
   };
-
-  if (loading) return <p>Loading books...</p>;
-  if (error) return <p>{error}</p>;
 
   return (
     <div>

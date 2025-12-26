@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import BookForm, { type BookFormValues } from "./BookForm";
-import { createBook } from "../Api/BooksApi";
+import { useBooks } from "../BooksContext";
 
 const emptyValues: BookFormValues = {
   title: "",
@@ -12,9 +12,10 @@ const emptyValues: BookFormValues = {
 
 const AddBook = () => {
   const navigate = useNavigate();
+  const { addBook } = useBooks();
 
-  const handleSubmit = async (values: BookFormValues) => {
-    await createBook({
+  const handleSubmit = (values: BookFormValues) => {
+    addBook({
       title: values.title,
       author: values.author,
       publicationYear: Number(values.publicationYear),
